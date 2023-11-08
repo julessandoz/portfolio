@@ -6,7 +6,7 @@ interface Color {
 export interface Skill {
     skillName: string;
     color: Color;
-    percentage: number;
+    percentage: string;
     imgPath: string;
 }
 

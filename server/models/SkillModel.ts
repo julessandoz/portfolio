@@ -6,7 +6,7 @@ const skillSchema = new mongoose.Schema({
       dark: { type: String, required: true },
       light: { type: String, required: true },
     },
-    percentage: { type: Number, required: true },
+    percentage: { type: String, required: true },
     imgPath: { type: String, required: true },
   });
   
