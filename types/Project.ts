@@ -4,8 +4,9 @@ export interface Project {
     Categories: string[];
     Technologies: string[];
     Image: string;
-    WebP: string;
+    WebP?: string;
     Github?: string;
     ProjectFolder?: string;
     Website?: string;
+    EndDate: string;
 }
