@@ -1,1 +1,3 @@
-# My Portfolio, powered by Nuxt 3
+# My Portfolio
+
+A way for me to display and remember my projects.
