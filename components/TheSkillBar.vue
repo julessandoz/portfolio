@@ -21,6 +21,7 @@ const percentage = props.percentage;
 </script>
 
 <style>
+
 .skill-item {
   display: flex;
   flex-direction: column;
@@ -56,5 +57,11 @@ const percentage = props.percentage;
 
 .light .skill-bar {
   background: v-bind(colorLight);
+}
+
+@media only screen and (max-width: 768px) {
+  .skill-item {
+    width: 80%;
+  }
 }
 </style>
