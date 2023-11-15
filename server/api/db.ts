@@ -11,7 +11,6 @@ const options: MongoClientOptions = {}; // See https://mongodb.github.io/node-mo
 async function connectDB() {
   try {
     await mongoose.connect(uri, {dbName: 'portfolio', ...options});
-    console.log("Connected to MongoDB!");
   } catch (err) {
     console.log(err);
   }
