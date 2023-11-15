@@ -92,7 +92,6 @@ function scrollToSection(e) {
   const section = document.querySelector(target);
   section.scrollIntoView({ behavior: "smooth" });
 }
-// })
 </script>
 
 <template>
@@ -117,7 +116,7 @@ function scrollToSection(e) {
         <a href="#projects" @click="scrollToSection($event)">Projects</a>
         <a href="#contact" @click="scrollToSection($event)">Contact</a>
         <div class="theme-switcher">
-          <div class="theme-switcher-icon lightMode" @click="toggleMode(true);"></div>
+          <div class="theme-switcher-icon" :class="`${displayMode}Mode`" @click="toggleMode(true);"></div>
         </div>
       </div>
       <div class="dropdown-links links" v-show="mobileNav">
@@ -126,7 +125,7 @@ function scrollToSection(e) {
         <a href="#projects" @click="toggleMobileNav()">Projects</a>
         <a href="#contact" @click="toggleMobileNav()">Contact</a>
         <div class="theme-switcher">
-          <div class="theme-switcher-icon lightMode" @click="toggleMode(true)"></div>
+          <div class="theme-switcher-icon" @click="toggleMode(true)"></div>
         </div>
       </div>
     </div>
