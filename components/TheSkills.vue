@@ -46,6 +46,8 @@ const skillsArray = computed(() => {
 
 @media only screen and (max-width: 768px) {
   .skills-container {
+    width: 80%;
+    margin: 0 auto;
     flex-direction: column;
     align-items: center;
     padding: 0vh 5vw 0vh 5vw;

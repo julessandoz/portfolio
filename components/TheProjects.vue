@@ -199,9 +199,11 @@ function resetAllFilters() {
 
 <template>
   <div class="filter-section">
+  <div class="title-container">
     <h3>Filter</h3>
+    <span class="reset" v-if="activeFilters" @click="resetAllFilters()">Reset All</span>
+  </div>
     <div class="filters-container">
-      <div class="reset" v-if="activeFilters" @click="resetAllFilters()">Reset All</div>
       <div class="filter">
         <div class="filter-title" id="category-title" for="category" @click="checkCategoryList()">
           Categories
@@ -253,6 +255,13 @@ function resetAllFilters() {
   padding: 0vh 5vw 2vh 15vw;
 }
 
+.title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .filter-section h3 {
   font-size: clamp(1.6rem, 2.1vw, 3.1rem);
   margin: 0 0 2vh 0;
@@ -261,10 +270,9 @@ function resetAllFilters() {
 .filters-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: flex-start;
   gap: 2vw;
-  width: 50%;
+  width: 90%;
 }
 
 .filter-title {
@@ -278,7 +286,7 @@ function resetAllFilters() {
   cursor: pointer;
   border: 2px solid #3c6799;
   border-radius: 5px;
-  width: auto;
+  width: fit-content;
   height: 3.5vh;
   transition: background-color 0.3s ease-in-out;
 }
@@ -340,7 +348,7 @@ function resetAllFilters() {
 }
 
 .reset {
-  margin: 0 0 2vh 0;
+  margin: 0 0 2vh 15px;
   padding: 0;
   font-size: clamp(1rem, 1.3vw, 1.5rem);
   cursor: pointer;
@@ -399,5 +407,11 @@ button.cta:hover {
 
 .light button.cta:hover {
   background-color: #f3f1ef;
+}
+
+@media screen and (max-width: 768px) {
+  .filters-container {
+    flex-wrap: wrap;
+  }
 }
 </style>

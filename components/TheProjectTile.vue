@@ -261,7 +261,7 @@ img {
 .tech-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 0 5%;
   margin: 0;
@@ -346,6 +346,7 @@ img {
   .modal-body {
     height: 75%;
     padding-top: 3vh;
+    overflow-y: scroll;
   }
 
   .description-container p {
