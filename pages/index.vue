@@ -51,9 +51,16 @@ onMounted(() => {
     useHead({
         title: titleContent.value,
         meta: [{
-            charset: 'utf-8',
+            charset: 'utf-8'
+        }],
+        meta: [{
             description: 'Welcome to my portfolio! I\'m Jules Sandoz, Fullstack and Frontend Developer with experience in UX/UI Design. I\'m from Switzerland and based in Kalispell, Montana.',
-        }]
+        }],
+        link: [{
+                rel: 'icon',
+                type: 'image/jpg',
+                href: '/logo-JS-dark.jpg'
+            }]
     })
     document.addEventListener("visibilitychange", () => {
         document.visibilityState === "hidden"
