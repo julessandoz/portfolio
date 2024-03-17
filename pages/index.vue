@@ -12,11 +12,10 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
     faSquareGithub,
     faLinkedin,
-    faSquareInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faFile } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faSquareGithub, faLinkedin, faSquareInstagram, faEnvelope, faFile);
+library.add(faSquareGithub, faLinkedin, faEnvelope);
 const changeTheme = ref(null);
 
 onMounted(() => {
@@ -176,7 +175,7 @@ onMounted(() => {
                 <div class="text-container">
                     <h2>About me</h2>
                     <p>
-                        Currently a last year student in Communication and Media Engineering in my
+                        Currently waiting for my Green Card after graduating with a Bachelor's in Communication and Media Engineering in my
                         home country of Switzerland, I enjoy working on websites, development,
                         marketing, and UI.
                     </p>
@@ -229,13 +228,6 @@ onMounted(() => {
                                 rel="noopener noreferrer">/jules-sandoz</a>
                         </div>
                         <div class="link">
-                            <a class="contact-link" href="https://www.instagram.com/julessandoz/" target="_blank"
-                                rel="noopener noreferrer">
-                                <client-only><font-awesome-icon icon="fa-brands fa-square-instagram" fixed-width /></client-only> </a><a
-                                class="contact-link" href="https://www.instagram.com/julessandoz/" target="_blank"
-                                rel="noopener noreferrer">@julessandoz</a>
-                        </div>
-                        <div class="link">
                             <a class="contact-link" href="https://github.com/julessandoz/" target="_blank"
                                 rel="noopener noreferrer">
                                 <client-only><font-awesome-icon icon="fa-brands fa-square-github" fixed-width /></client-only> </a><a
@@ -246,14 +238,6 @@ onMounted(() => {
                             <a class="contact-link" href="mailto:contact@jules-sandoz.com">
                                 <client-only><font-awesome-icon icon="fa-solid fa-envelope" fixed-width /></client-only> </a><a class="contact-link"
                                 href="mailto:contact@jules-sandoz.com">contact@jules-sandoz.com</a>
-                        </div>
-                        <div class="link">
-                            <a class="contact-link"
-                                href="https://www.dropbox.com/scl/fi/bgwqisgd4zw79bpk4a9qc/CV-JS.pdf?rlkey=2r6nvngf7pc0mhzgqefv5fo22&dl=1"
-                                target="_blank" rel="noopener noreferrer">
-                                <client-only><font-awesome-icon icon="fa-solid fa-file" fixed-width /></client-only> </a><a class="contact-link"
-                                href="https://www.dropbox.com/scl/fi/bgwqisgd4zw79bpk4a9qc/CV-JS.pdf?rlkey=2r6nvngf7pc0mhzgqefv5fo22&dl=1"
-                                target="_blank" rel="noopener noreferrer">Download my resume</a>
                         </div>
                     </div>
                 </div>
