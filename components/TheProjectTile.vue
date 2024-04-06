@@ -299,6 +299,11 @@ img {
   text-align: center;
 }
 @media only screen and (max-width: 768px) {
+  .tile-container {
+    width: 80%;
+    height: auto;
+  }
+
   .tile-overlay {
     opacity: 0.6;
     border-radius: 5%;

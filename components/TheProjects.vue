@@ -451,5 +451,10 @@ button.cta:hover {
   .filters-container {
     flex-wrap: wrap;
   }
+  .projects-container {
+    padding: 0;
+    width: 100%;
+    margin-inline: auto;
+  }
 }
 </style>
