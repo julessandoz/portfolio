@@ -16,17 +16,16 @@ const selectedTechnologies = new Set();
 const activeFilters = ref(false);
 const allProjects = [];
 let categories = new Set();
-    let technologies = new Set();
-    const projectKey = ref(0);
+let technologies = new Set();
+const projectKey = ref(0);
 
 useFetch(async () => {
-  const response = await fetch(`${apiURL}/projects`)
-  projects.value = await response.json()
-})
+  const response = await fetch(`${apiURL}/projects`);
+  projects.value = await response.json();
+});
 
 watch(projects, () => {
   if (projects.value) {
-
     for (let i = 0; i < projects.value.length; i++) {
       allProjects.push({
         project: projects.value[i]._id,
@@ -53,7 +52,9 @@ watch(projects, () => {
     const firstHalf = categoriesArray
       .slice(0, middleIndex)
       .sort((a, b) => b.length - a.length);
-    const secondHalf = categoriesArray.slice(middleIndex).sort((a, b) => a.length - b.length);
+    const secondHalf = categoriesArray
+      .slice(middleIndex)
+      .sort((a, b) => a.length - b.length);
 
     let optimizedCategories = [];
     for (let i = 0; i < firstHalf.length; i++) {
@@ -92,14 +93,13 @@ watch(projects, () => {
 
     updateProjectsArray();
   }
-
 });
 
 function checkCategoryList() {
   showCategoriesFilter.value = !showCategoriesFilter.value;
   document.getElementById("category-title").classList.toggle("active");
   showCategoriesFilter.value &&
-    document.getElementById("technology-title").classList.contains("active")
+  document.getElementById("technology-title").classList.contains("active")
     ? checkTechnologyList()
     : null;
 }
@@ -108,7 +108,7 @@ function checkTechnologyList() {
   showTechnologiesFilter.value = !showTechnologiesFilter.value;
   document.getElementById("technology-title").classList.toggle("active");
   showTechnologiesFilter.value &&
-    document.getElementById("category-title").classList.contains("active")
+  document.getElementById("category-title").classList.contains("active")
     ? checkCategoryList()
     : null;
 }
@@ -181,7 +181,6 @@ function updateProjectsArray() {
   selectedCategories.size > 0 || selectedTechnologies.size > 0
     ? (activeFilters.value = true)
     : (activeFilters.value = false);
-
 }
 
 function resetAllFilters() {
@@ -194,34 +193,63 @@ function resetAllFilters() {
   });
   updateProjectsArray();
 }
-
 </script>
 
 <template>
   <div class="filter-section">
-  <div class="title-container">
-    <h3>Filter</h3>
-    <span class="reset" v-if="activeFilters" @click="resetAllFilters()">Reset All</span>
-  </div>
+    <div class="title-container">
+      <h3>Filter</h3>
+      <span class="reset" v-if="activeFilters" @click="resetAllFilters()">Reset All</span>
+    </div>
     <div class="filters-container">
       <div class="filter">
-        <div class="filter-title" id="category-title" for="category" @click="checkCategoryList()">
+        <div
+          class="filter-title"
+          id="category-title"
+          for="category"
+          @click="checkCategoryList()"
+        >
           Categories
         </div>
         <div class="filter-options">
-          <div class="filter-option" v-show="showCategoriesFilter" v-for="category in categories" :key="category">
-            <input type="checkbox" :id="category" :data-cat="category" @input="checkCategoryFilter($event)" />
+          <div
+            class="filter-option"
+            v-show="showCategoriesFilter"
+            v-for="category in categories"
+            :key="category"
+          >
+            <input
+              type="checkbox"
+              :id="category"
+              :data-cat="category"
+              @input="checkCategoryFilter($event)"
+            />
             <label :for="category">{{ category }}</label>
           </div>
         </div>
       </div>
       <div class="filter">
-        <div class="filter-title" id="technology-title" for="technologyFilter" @click="checkTechnologyList()">
+        <div
+          class="filter-title"
+          id="technology-title"
+          for="technologyFilter"
+          @click="checkTechnologyList()"
+        >
           Technologies
         </div>
         <div class="filter-options">
-          <div class="filter-option" v-show="showTechnologiesFilter" v-for="technology in technologies" :key="technology">
-            <input type="checkbox" :id="technology" :data-tech="technology" @input="checkTechnologyFilter($event)" />
+          <div
+            class="filter-option"
+            v-show="showTechnologiesFilter"
+            v-for="technology in technologies"
+            :key="technology"
+          >
+            <input
+              type="checkbox"
+              :id="technology"
+              :data-tech="technology"
+              @input="checkTechnologyFilter($event)"
+            />
             <label :for="technology">{{ technology }}</label>
           </div>
         </div>
@@ -229,14 +257,32 @@ function resetAllFilters() {
     </div>
   </div>
   <div class="projects-container">
-    <TheProjectTile v-for="project in projectsArray.slice(0, 6)" :key="project.project" :id="project.project"
-      :name="project.name" :desc="project.desc" :img="project.image"  :website="project.website"
-      :github="project.github" :projectFolder="project.projectFolder" :tech="project.tech" :categories="project.cat" />
-    <div class="more-container projects-container">
-      <TheProjectTile v-if="showMore" v-for="project in projectsArray.slice(6)" :id="project.project" :name="project.name"
-        :desc="project.desc" :img="project.image" :website="project.website" :github="project.github"
-        :projectFolder="project.projectFolder" :tech="project.tech" :categories="project.cat" />
-    </div>
+    <TheProjectTile
+      v-for="project in projectsArray.slice(0, 6)"
+      :key="project.project"
+      :id="project.project"
+      :name="project.name"
+      :desc="project.desc"
+      :img="project.image"
+      :website="project.website"
+      :github="project.github"
+      :projectFolder="project.projectFolder"
+      :tech="project.tech"
+      :categories="project.cat"
+    />
+    <TheProjectTile
+      v-for="project in projectsArray.slice(6)"
+      :id="project.project"
+      :name="project.name"
+      :desc="project.desc"
+      :img="project.image"
+      :website="project.website"
+      :github="project.github"
+      :projectFolder="project.projectFolder"
+      :tech="project.tech"
+      :categories="project.cat"
+      v-show="showMore"
+    />
     <div v-if="projectsArray.length <= 0">Couldn't load projects</div>
   </div>
   <div class="cta-container" v-if="showMoreBtn">
@@ -245,7 +291,7 @@ function resetAllFilters() {
   </div>
 </template>
 
-<style>
+<style scoped>
 .filter-section {
   display: flex;
   flex-direction: column;
@@ -367,18 +413,13 @@ function resetAllFilters() {
   padding: 0vh 5vw 5vh 13vw;
 }
 
-.more-container {
-  width: 100%;
-  padding: 0;
-}
-
 .cta-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 80%;
-  margin: 0;
+  margin: 5vh 0 0 0;
   padding: 0vh 5vw 5vh 13vw;
 }
 
@@ -391,14 +432,11 @@ button.cta {
   padding: 0.5rem 1rem;
   margin: 0;
   cursor: pointer;
-  width: 16%;
-  height: 10%;
   transition: background-color 0.5s ease, width 0.5s ease, height 0.5s ease;
 }
 
 button.cta:hover {
-  width: 18%;
-  height: 11%;
+  padding: 0.7rem 1.2rem;
 }
 
 .dark button.cta:hover {
