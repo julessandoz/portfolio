@@ -1,15 +1,8 @@
 <script setup>
 import { ref, watchEffect, computed } from "vue";
-/* import the fontawesome core */
-import { library } from "@fortawesome/fontawesome-svg-core";
-/* import font awesome icon component */
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
-library.add(faBars, faXmark);
 
 const emits = defineEmits(["changeTheme"]);
 
-// onMounted(() => {
 window.addEventListener("resize", checkScreen);
 window.addEventListener("hashchange", function () {
   const hash = window.location.hash;
@@ -22,7 +15,9 @@ window.addEventListener("hashchange", function () {
     }
   });
 });
-const theme = localStorage.getItem('theme');
+
+const theme = localStorage.getItem("theme");
+
 const displayMode = ref("light");
 
 const displayModeCode = ref("rgba(237, 230, 227, 0.95)");
@@ -44,18 +39,10 @@ function toggleMode(sendEmits = false) {
     ? (displayMode.value = "light")
     : (displayMode.value = "dark");
   if (displayMode.value === "dark") {
-    localStorage.setItem('theme', 'dark');
-    document.querySelectorAll(".theme-switcher-icon").forEach((icon) => {
-      icon.classList.remove("lightMode");
-      icon.classList.add("darkMode");
-    });
+    localStorage.setItem("theme", "dark");
     displayModeCode.value = "rgba(46, 80, 119, 0.95)";
   } else {
-    localStorage.setItem('theme', 'light');
-    document.querySelectorAll(".theme-switcher-icon").forEach((icon) => {
-      icon.classList.add("lightMode");
-      icon.classList.remove("darkMode");
-    });
+    localStorage.setItem("theme", "light");
     displayModeCode.value = "rgba(237, 230, 227, 0.95)";
   }
 
@@ -99,14 +86,17 @@ function scrollToSection(e) {
     <div class="nav-container">
       <div class="logo">
         <a href="#home" @click="scrollToSection($event)">
-          <div class="logo-img" :style="{ backgroundImage: `url(${logoPathWebp}), url(${logoPath})` }"></div>
+          <div
+            class="logo-img"
+            :style="{ backgroundImage: `url(${logoPathWebp}), url(${logoPath})` }"
+          ></div>
         </a>
       </div>
       <div class="hamb">
         <span class="hamburger" @click="toggleMobileNav()" v-if="displayHamburger">
-          <font-awesome-icon icon="fa-solid fa-bars" fixed-width /> </span><span class="xmark" @click="toggleMobileNav()"
-          v-else>
-          <font-awesome-icon icon="fa-solid fa-xmark" fixed-width />
+          <Icon name="ic:round-menu" /> </span
+        ><span class="xmark" @click="toggleMobileNav()" v-else>
+          <Icon name="ic:round-close" />
         </span>
       </div>
       <button class="side-menu" />
@@ -116,7 +106,18 @@ function scrollToSection(e) {
         <a href="#projects" @click="scrollToSection($event)">Projects</a>
         <a href="#contact" @click="scrollToSection($event)">Contact</a>
         <div class="theme-switcher">
-          <div class="theme-switcher-icon" :class="`${displayMode}Mode`" @click="toggleMode(true);"></div>
+          <Icon
+            v-if="displayMode != 'dark'"
+            name="ic:round-light-mode"
+            size="30px"
+            @click="toggleMode(true)"
+          />
+          <Icon
+            v-if="displayMode == 'dark'"
+            name="ic:round-dark-mode"
+            size="30px"
+            @click="toggleMode(true)"
+          />
         </div>
       </div>
       <div class="dropdown-links links" v-show="mobileNav">
@@ -125,7 +126,18 @@ function scrollToSection(e) {
         <a href="#projects" @click="toggleMobileNav()">Projects</a>
         <a href="#contact" @click="toggleMobileNav()">Contact</a>
         <div class="theme-switcher">
-          <div class="theme-switcher-icon" @click="toggleMode(true)"></div>
+          <Icon
+            v-if="displayMode != 'dark'"
+            name="ic:round-light-mode"
+            size="30px"
+            @click="toggleMode(true)"
+          />
+          <Icon
+            v-if="displayMode == 'dark'"
+            name="ic:round-dark-mode"
+            size="30px"
+            @click="toggleMode(true)"
+          />
         </div>
       </div>
     </div>
@@ -230,11 +242,11 @@ function scrollToSection(e) {
   }
 
   .theme-switcher-icon.darkMode {
-    background-color: #2e5077;
+    color: #2e5077;
   }
 
   .theme-switcher-icon.lightMode {
-    background-color: #ede6e3;
+    color: #ede6e3;
   }
 }
 
@@ -281,11 +293,6 @@ function scrollToSection(e) {
 
   .links a:hover:not(.active) {
     color: #f06449;
-    font-size: clamp(1.3rem, 1.1vw, 2rem);
-    -webkit-transition: font-size 0.5s;
-    -moz-transition: font-size 0.5s;
-    -o-transition: font-size 0.5s;
-    transition: font-size 0.5s;
   }
 
   .links a.active {
@@ -293,23 +300,14 @@ function scrollToSection(e) {
     font-weight: 500;
     cursor: default;
   }
+
+  .theme-switcher .icon:hover {
+    color: #f06449;
+  }
 }
 
-.theme-switcher-icon {
-  width: 30px;
-  height: 30px;
+.theme-switcher .icon {
   cursor: pointer;
-}
-
-.darkMode {
-  background-image: url("/darkmode.svg");
-  background-size: cover;
-}
-
-.lightMode {
-  background-image: url("/lightmode.svg");
-  background-size: cover;
-  color: #2e5077;
 }
 
 .side-menu {
