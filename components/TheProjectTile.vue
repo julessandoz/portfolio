@@ -33,80 +33,73 @@ function toggleModal(e) {
 </script>
 
 <template>
-  <div
-    class="tile-container"
-    :id="id"
-    @click="toggleModal($event)"
-    :data-cat="categories"
-  >
-    <nuxt-img 
-    format="webp"
-    :src="img"
-    :alt="name"
-    />
-    <div class="tile-overlay toggle"></div>
-    <div class="overlay-text toggle">
-      <h3 class="tile-title toggle">{{ name }}</h3>
-    </div>
-  </div>
-  <div class="modal-container toggle" @click="toggleModal($event)" v-if="modal">
-    <div class="modal" @click="">
-      <div class="modal-header">
-        <span class="material-symbols-outlined closeBtn toggle">close</span>
-        <div class="header-image">
-          <nuxt-img 
-          class="banner"
-          format="webp"
-          :src="img"
-          :alt="name"
-          />
-        </div>
-        <div class="header-text">
-          <h3>{{ name }}</h3>
-        </div>
+  <div>
+    <div
+      class="tile-container"
+      :id="id"
+      @click="toggleModal($event)"
+      :data-cat="categories"
+    >
+      <nuxt-img format="webp" :src="img" :alt="name" />
+      <div class="tile-overlay toggle"></div>
+      <div class="overlay-text toggle">
+        <h3 class="tile-title toggle">{{ name }}</h3>
       </div>
-      <div class="modal-body">
-        <div class="description-container">
-          <p>{{ desc }}</p>
+    </div>
+    <div class="modal-container toggle" @click="toggleModal($event)" v-if="modal">
+      <div class="modal" @click="">
+        <div class="modal-header">
+          <Icon class="closeBtn toggle" name="ic:round-close" />
+          <div class="header-image">
+            <nuxt-img class="banner" format="webp" :src="img" :alt="name" />
+          </div>
+          <div class="header-text">
+            <h3>{{ name }}</h3>
+          </div>
         </div>
-        <div class="links-container">
-          <a
-            class="project-link"
-            :href="website"
-            target="_blank"
-            rel="noopener noreferrer"
-            v-if="website"
-            >Website</a
-          >
-          <a
-            class="project-link"
-            :href="github"
-            target="_blank"
-            rel="noopener noreferrer"
-            v-if="github"
-            >Github</a
-          >
-          <a
-            class="project-link"
-            :href="projectFolder"
-            target="_blank"
-            rel="noopener noreferrer"
-            v-if="projectFolder"
-            >Folder (FR)</a
-          >
-        </div>
-        <div class="tech-container">
-          <h4>Technologies used</h4>
-          <ol class="tech-list">
-            <li class="tech-item" v-for="tech in tech" :key="tech">{{ tech }}</li>
-          </ol>
+        <div class="modal-body">
+          <div class="description-container">
+            <p>{{ desc }}</p>
+          </div>
+          <div class="links-container">
+            <a
+              class="project-link"
+              :href="website"
+              target="_blank"
+              rel="noopener noreferrer"
+              v-if="website"
+              >Website</a
+            >
+            <a
+              class="project-link"
+              :href="github"
+              target="_blank"
+              rel="noopener noreferrer"
+              v-if="github"
+              >Github</a
+            >
+            <a
+              class="project-link"
+              :href="projectFolder"
+              target="_blank"
+              rel="noopener noreferrer"
+              v-if="projectFolder"
+              >Folder (FR)</a
+            >
+          </div>
+          <div class="tech-container">
+            <h4>Technologies used</h4>
+            <ol class="tech-list">
+              <li class="tech-item" v-for="tech in tech" :key="tech">{{ tech }}</li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style>
+<style scoped>
 .tile-container {
   position: relative;
   top: 4vh;
@@ -116,15 +109,6 @@ function toggleModal(e) {
   margin: 2% 0;
   border-radius: 5%;
   transition: top 1s ease;
-}
-
-.more-container .tile-container {
-  transition: all 1s ease;
-}
-
-.tile-container.visible,
-.more-container .tile-container {
-  top: 0;
 }
 
 .modal-container .tile-container {
