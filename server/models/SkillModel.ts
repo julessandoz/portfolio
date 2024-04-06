@@ -7,7 +7,9 @@ const skillSchema = new mongoose.Schema({
       light: { type: String, required: true },
     },
     percentage: { type: String, required: true },
-    imgPath: { type: String, required: true },
+    iconName: { type: String, required: true },
+    experience: {type: Number, required: true},
+    category: { type: String, enum: ['Technical', 'Language', 'Other'], required: true },
   });
   
   const SkillModel = mongoose.model('Skill', skillSchema, 'Skills');
