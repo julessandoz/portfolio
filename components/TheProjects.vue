@@ -312,15 +312,9 @@ function resetAllFilters() {
   transition: background-color 0.3s ease-in-out;
 }
 
-.filter-title.active,
-.filter-title:hover {
+.filter-title.active {
   background-color: #3c6799;
   color: #f3f1ef;
-}
-
-.filter-title.active:hover {
-  background-color: #f3f1ef;
-  color: #3c6799;
 }
 
 .filter-options {

@@ -49,7 +49,7 @@ function toggleModal(e) {
     <div class="modal-container toggle" @click="toggleModal($event)" v-if="modal">
       <div class="modal" @click="">
         <div class="modal-header">
-          <Icon class="closeBtn toggle" name="ic:round-close" />
+          <IconCSS class="closeBtn toggle" name="ic:round-close" />
           <div class="header-image">
             <nuxt-img class="banner" format="webp" :src="img" :alt="name" />
           </div>
