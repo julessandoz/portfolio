@@ -16,6 +16,7 @@ export default defineNuxtConfig({
           process.env.ALLOWED_DOMAIN_2 || "",
           process.env.ALLOWED_DOMAIN_3 || "",
         ],
+        'img-src': false
       },
     },
   },
