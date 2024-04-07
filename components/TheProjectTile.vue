@@ -302,6 +302,7 @@ img {
   .tile-container {
     width: 80%;
     height: auto;
+    margin-inline: auto;
   }
 
   .tile-overlay {

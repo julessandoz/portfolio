@@ -136,51 +136,26 @@ function checkTechnologyFilter(event) {
 }
 
 function updateProjectsArray() {
-  // Reset the projects array
-  projectsArray.value = [];
-  // Loop through all projects
-  for (let i = 0; i < allProjects.length; i++) {
-    let catMatch = selectedCategories.size === 0;
-    let techMatch = selectedTechnologies.size === 0;
-
-    // Check if the current project matches the selected categories
-    if (!catMatch) {
-      for (let j = 0; j < allProjects[i].cat.length; j++) {
-        if (selectedCategories.has(allProjects[i].cat[j])) {
-          catMatch = true;
-          break;
-        }
-      }
-    }
-
-    // Check if the current project matches the selected technologies
-    if (!techMatch) {
-      for (let j = 0; j < allProjects[i].tech.length; j++) {
-        if (selectedTechnologies.has(allProjects[i].tech[j])) {
-          techMatch = true;
-          break;
-        }
-      }
-    }
-
-    // If the project matches both categories and technologies, add it to the array
-    if (catMatch && techMatch) {
-      projectsArray.value.push(allProjects[i]);
-    }
-  }
-
-  projectsArray.value.sort((a, b) => {
-    return new Date(b.date) - new Date(a.date);
+  // Filter projects based on the selected categories and technologies
+  projectsArray.value = allProjects.filter((project) => {
+    const catMatch =
+      selectedCategories.size === 0 ||
+      project.cat.some((cat) => selectedCategories.has(cat));
+    const techMatch =
+      selectedTechnologies.size === 0 ||
+      project.tech.some((tech) => selectedTechnologies.has(tech));
+    return catMatch && techMatch;
   });
 
-  // Update the count of projects and show/hide the "show more" button
+  // Sort the filtered projects by date
+  projectsArray.value.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  // Update UI based on the filtered and sorted projects
   projectsCount.value = projectsArray.value.length;
   showMoreBtn.value = projectsCount.value > 6;
   showMore.value = false;
   projectKey.value += 1;
-  selectedCategories.size > 0 || selectedTechnologies.size > 0
-    ? (activeFilters.value = true)
-    : (activeFilters.value = false);
+  activeFilters.value = selectedCategories.size > 0 || selectedTechnologies.size > 0;
 }
 
 function resetAllFilters() {
@@ -213,7 +188,6 @@ function resetAllFilters() {
         </div>
         <div class="filter-options">
           <div
-            class="filter-option"
             v-show="showCategoriesFilter"
             v-for="category in categories"
             :key="category"
@@ -224,7 +198,7 @@ function resetAllFilters() {
               :data-cat="category"
               @input="checkCategoryFilter($event)"
             />
-            <label :for="category">{{ category }}</label>
+            <label class="filter-option" :for="category">{{ category }}</label>
           </div>
         </div>
       </div>
@@ -239,18 +213,19 @@ function resetAllFilters() {
         </div>
         <div class="filter-options">
           <div
-            class="filter-option"
             v-show="showTechnologiesFilter"
             v-for="technology in technologies"
             :key="technology"
           >
-            <input
-              type="checkbox"
-              :id="technology"
-              :data-tech="technology"
-              @input="checkTechnologyFilter($event)"
-            />
-            <label :for="technology">{{ technology }}</label>
+            <div>
+              <input
+                type="checkbox"
+                :id="technology"
+                :data-tech="technology"
+                @input="checkTechnologyFilter($event)"
+              />
+              <label class="filter-option" :for="technology">{{ technology }}</label>
+            </div>
           </div>
         </div>
       </div>
@@ -368,22 +343,24 @@ function resetAllFilters() {
   width: auto;
   height: 2.5vh;
   margin: 0 3vw 1vh 0;
-  padding: 1% 2%;
+  padding: 3px 5px;
+  line-height: 1.3;
+  cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
 
-.filter-option.active,
+input[type="checkbox"]:checked + label.filter-option,
 .filter-option:hover {
   background-color: #3c6799;
   color: #f3f1ef;
 }
 
-.filter-option.active:hover {
+input[type="checkbox"]:checked + label.filter-option:hover {
   background-color: #f3f1ef;
   color: #3c6799;
 }
 
-.filter-options input[type="checkbox"] {
+input[type="checkbox"] {
   display: none;
 }
 
@@ -451,6 +428,11 @@ button.cta:hover {
   .filters-container {
     flex-wrap: wrap;
   }
+
+  .filter-option {
+    line-height: 1;
+  }
+
   .projects-container {
     padding: 0;
     width: 100%;
