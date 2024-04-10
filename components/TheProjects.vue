@@ -380,8 +380,8 @@ input[type="checkbox"] {
   justify-content: space-around;
   align-items: center;
   width: 80%;
-  margin: 0;
-  padding: 0vh 5vw 5vh 13vw;
+  margin-inline: auto;
+  padding-bottom: 5vh;
 }
 
 .cta-container {
@@ -390,8 +390,8 @@ input[type="checkbox"] {
   justify-content: center;
   align-items: center;
   width: 80%;
-  margin: 5vh 0 0 0;
-  padding: 0vh 5vw 5vh 13vw;
+  margin-top: 5vh;
+  margin-inline: auto;
 }
 
 button.cta {

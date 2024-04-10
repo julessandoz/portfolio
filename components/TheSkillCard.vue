@@ -38,7 +38,12 @@ const props = defineProps({
 let languageLevel = "Native";
 
 if (props.category == "Language" && props.skill != "French") {
-  languageLevel = props.experience >= 10 ? "Bilingual" : "Proficient";
+  languageLevel =
+    props.experience >= 10
+      ? "Bilingual"
+      : props.experience >= 5
+      ? "Proficient"
+      : "Beginner";
 }
 
 const darkColor = props.color.dark;
