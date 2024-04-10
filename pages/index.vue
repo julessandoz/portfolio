@@ -174,9 +174,9 @@ onMounted(() => {
       <div class="text-container">
         <h2>About me</h2>
         <p>
-          I just got on the US job market after obtaining my green card and graduating
-          with a Bachelor's in Communication and Media Engineering in my home country of
-          Switzerland, I enjoy working on websites, development, and UI.
+          Having recently obtained my green card and graduated with a Bachelor's degree in
+          Communication and Media Engineering from Switzerland, I'm excited to enter the
+          US job market. My passion lies in website development, UI, and UX.
         </p>
         <p>
           I’m a very curious person and love learning while solving problems. Great fan of
@@ -193,7 +193,7 @@ onMounted(() => {
         <nuxt-img
           class="portrait-photo"
           format="webp"
-          src="/jules-sandoz.jpg"
+          src="/jules-sandoz-5.jpg"
           alt="Jules Sandoz"
         />
       </div>
@@ -463,10 +463,12 @@ a:hover {
 
 .portrait-photo {
   width: 35vw;
-  border-radius: 0 400% 400% 0;
-  /* margin-top: 2vh; */
+  border-radius: 400% 0 0 400%;
+  aspect-ratio: 5/4;
+  object-fit: cover;
+  object-position: 0 35%;
+  margin-top: 8%;
   float: right;
-  transform: scaleX(-1);
 }
 
 @media only screen and (max-width: 768px) {
@@ -526,7 +528,6 @@ a:hover {
     height: 80vw;
     margin-top: 5vh;
     border-radius: 50%;
-    transform: scaleX(-1);
   }
 }
 
@@ -623,6 +624,13 @@ a:hover {
 
   #contact .text-container {
     width: 78vw;
+    padding-inline: 15vw;
+  }
+
+  #contact .text-container .socials {
+    width: auto;
+    justify-content: flex-start;
+    gap: 25%;
   }
 }
 </style>
