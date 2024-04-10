@@ -109,6 +109,7 @@ function toggleModal(e) {
   margin: 2% 0;
   border-radius: 5%;
   transition: top 1s ease;
+  border: 2px solid #ede6e3;
 }
 
 .modal-container .tile-container {
